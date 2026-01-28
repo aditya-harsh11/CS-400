@@ -152,7 +152,14 @@ public class BinarySearchTree<T extends Comparable<T>> implements SortedCollecti
         tree.insert(25);
         tree.insert(20);
         return (tree.size() == 2 && tree.contains(25) && tree.contains(20));
+    }
 
+    //main method
+    public static void main(String[] args) {
+        BinarySearchTree<Integer> tree = new BinarySearchTree<>();
+        System.out.println("Test 1: " + tree.test1());
+        System.out.println("Test 2: " + tree.test2());
+        System.out.println("Test 3: " + tree.test3());
     }
 
 }
