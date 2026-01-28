@@ -22,14 +22,14 @@ public class BinarySearchTree<T extends Comparable<T>> implements SortedCollecti
         if (subtree == null) {
             return;
         }
-        if (newNode.getData().compareTo(subtree.getData()) <= 0) {
+        if (newNode.getData().compareTo(subtree.getData()) <= 0) { //left
             if (subtree.getLeft() == null) {
                 subtree.setLeft(newNode);
                 newNode.setUp(subtree);
             } else {
                 insertHelper(newNode, subtree.getLeft());
             }
-        } else {
+        } else { //right
             if (subtree.getRight() == null) {
                 subtree.setRight(newNode);
                 newNode.setUp(subtree);
@@ -40,6 +40,22 @@ public class BinarySearchTree<T extends Comparable<T>> implements SortedCollecti
     }
 
     //contains
+    public boolean contains(Comparable<T> find) {
+        if (find == null) {
+            return false;
+        }
+        BinaryNode<T> current = root;
+        while (current != null) {
+            if (find.compareTo(current.getData()) == 0) {
+                return true;
+            } else if (find.compareTo(current.getData()) < 0) {
+                current = current.getLeft();
+            } else {
+                current = current.getRight();
+            }
+        }
+        return false;
+    }
 
     //size
 
