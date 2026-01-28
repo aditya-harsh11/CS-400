@@ -111,4 +111,48 @@ public class BinarySearchTree<T extends Comparable<T>> implements SortedCollecti
     public void clear() {
         root = null;
     }
+
+    //Test Methods
+
+    // Number 1
+    public boolean test1 () {
+        BinarySearchTree<Integer> tree = new BinarySearchTree<>();
+        tree.insert(65);
+        tree.insert(30);
+        tree.insert(70);
+        tree.insert(50);
+        tree.insert(60);
+        return (tree.contains(65) && tree.contains(30) && tree.contains(70) && tree.contains(50) && tree.contains(60));
+    }
+
+    // Number 2
+    public boolean test2() {
+        BinarySearchTree<String> tree = new BinarySearchTree<>();
+        tree.insert("a");
+        tree.insert("d");
+        tree.insert("i");
+        tree.insert("a");
+        tree.insert("t");
+        return (tree.contains("a") && tree.contains("d") && tree.contains("i") && tree.contains("t"));
+    }
+
+    // Number 3
+    public boolean test3() {
+        BinarySearchTree<Integer> tree = new BinarySearchTree<>();
+        tree.insert(5);
+        tree.insert(15);
+        tree.insert(10);
+        if (tree.size() != 3) {
+            return false;
+        }
+        tree.clear();
+        if (!tree.isEmpty()) {
+            return false;
+        }
+        tree.insert(25);
+        tree.insert(20);
+        return (tree.size() == 2 && tree.contains(25) && tree.contains(20));
+
+    }
+
 }
