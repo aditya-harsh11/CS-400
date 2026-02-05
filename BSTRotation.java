@@ -19,24 +19,25 @@ public class BSTRotation<T extends Comparable<T>> extends BinarySearchTree_Place
      * @param parent is the node being rotated from parent to child position
      */
     protected void rotate(BinaryNode<T> child, BinaryNode<T> parent) {
+        // Check for invalid input
         if (child == null || parent == null) {
             throw new IllegalArgumentException("Nodes cant be null");
         }
+        // Child must actually be a child of parent
         if (child.getUp() != parent) {
             throw new IllegalArgumentException("Nodes dont have a parent and child relationship");
         }
-
+        // Storing the grandparent reference
         BinaryNode<T> grandparent = parent.getUp();
-
         if (parent.getLeft() == child) {
-            // Right rotation
+            // Right rotation - transfer the left subtree to parents position and move parent down
             parent.setLeft(child.getRight());
             if (child.getRight() != null) {
                 child.getRight().setUp(parent);
             }
             child.setRight(parent);
         } else if (parent.getRight() == child) {
-            // Left rotation
+            // Left rotation - transfer the right subtree to the parents position and move parent down
             parent.setRight(child.getLeft());
             if (child.getLeft() != null) {
                 child.getLeft().setUp(parent);
@@ -45,10 +46,10 @@ public class BSTRotation<T extends Comparable<T>> extends BinarySearchTree_Place
         } else {
             throw new IllegalArgumentException("Child is not a child of parent");
         }
-
+        // Update the parent links
         parent.setUp(child);
         child.setUp(grandparent);
-
+        // Connect the rotated subtree back to the original tree
         if (grandparent != null) {
             if (grandparent.getLeft() == parent) {
                 grandparent.setLeft(child);
@@ -56,6 +57,7 @@ public class BSTRotation<T extends Comparable<T>> extends BinarySearchTree_Place
                 grandparent.setRight(child);
             }
         } else {
+            // Rotation happened at the root
             this.root = child;
         }
     }
